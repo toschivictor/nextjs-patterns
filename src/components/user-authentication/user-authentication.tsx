@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/button/button';
 import { Input } from '@/components/input/input';
 import { useInput } from '@/hooks/use-input';
-import { postUserAuthentication } from '@/app/api/user-authentication';
+import { postUserAuthentication } from '@/lib/api/user-authentication';
 
 export const UserAuthentication = () => {
 	const emailInput = useInput('');

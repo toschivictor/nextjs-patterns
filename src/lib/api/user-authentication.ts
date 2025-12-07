@@ -10,3 +10,4 @@ export const postUserAuthentication = async (formData: {
 	// Handle response if necessary
 	const data = await response.json();
 };
+
