@@ -1,10 +1,10 @@
-import Link from 'next/link';
 import {
-	HomeIcon,
 	ArrowsUpDownIcon,
 	BanknotesIcon,
 	ChartBarIcon,
+	HomeIcon,
 } from '@heroicons/react/24/solid';
+import Link from 'next/link';
 import { Search } from '@/components/search/search';
 
 export default function Dashboard() {

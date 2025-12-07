@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import type React from 'react';
+import { useMemo, useState } from 'react';
 
 export function Search() {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -17,9 +18,9 @@ export function Search() {
 	const filteredItems = useMemo(
 		() =>
 			items.filter((item) =>
-				item.toLowerCase().includes(searchTerm.toLowerCase())
+				item.toLowerCase().includes(searchTerm.toLowerCase()),
 			),
-		[items, searchTerm]
+		[items, searchTerm],
 	);
 
 	const handleDeleteTerm = (term: string) => {
@@ -61,8 +62,8 @@ export function Search() {
 				className="w-full p-2 border-none"
 			/>
 			<ul>
-				{filteredItems.map((item, index) => (
-					<li key={index}>{item}</li>
+				{filteredItems.map((item) => (
+					<li key={item}>{item}</li>
 				))}
 			</ul>
 		</div>

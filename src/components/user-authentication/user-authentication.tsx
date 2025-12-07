@@ -19,6 +19,7 @@ export const UserAuthentication = () => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		console.log('handleSubmit');
 		setIsLoading(true);
 		validateInput(emailInput);
 		validateInput(passwordInput);
@@ -28,10 +29,10 @@ export const UserAuthentication = () => {
 				email: emailInput.value,
 				password: passwordInput.value,
 			});
-			router.push('/dashboard');
 		} catch (error) {
 			console.error(error);
 		} finally {
+			router.push('/dashboard');
 			setIsLoading(false);
 		}
 	};
@@ -108,7 +109,7 @@ export const UserAuthentication = () => {
 						</label>
 					</div>
 					<div>
-						<Button label="Log in" primary loading={isLoading} />
+						<Button type="submit" label="Log in" primary loading={isLoading} />
 					</div>
 				</form>
 			</div>
