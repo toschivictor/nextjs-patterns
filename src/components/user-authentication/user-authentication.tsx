@@ -1,15 +1,21 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/button/button';
 import { Input } from '@/components/input/input';
 import { useInput } from '@/hooks/use-input';
 import { postUserAuthentication } from '@/lib/api/user-authentication';
 
+// TODO:
+// - Add validation to the form using Zod
+// - Add error handling to the form
+// - Create API in the backend
 export const UserAuthentication = () => {
 	const emailInput = useInput('');
 	const passwordInput = useInput('');
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const router = useRouter();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -22,6 +28,7 @@ export const UserAuthentication = () => {
 				email: emailInput.value,
 				password: passwordInput.value,
 			});
+			router.push('/dashboard');
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -48,17 +55,17 @@ export const UserAuthentication = () => {
 				</p>
 				<p className="flex flex-col items-center justify-center mt-10 text-center">
 					<span>Don't have an account?</span>
-					<a href="#" className="underline">
+					<a href="/" className="underline">
 						Get Started!
 					</a>
 				</p>
 				<p className="mt-6 text-sm text-center text-gray-300">
 					Read our
-					<a href="#" className="underline">
+					<a href="/terms" className="underline">
 						terms
 					</a>
 					and
-					<a href="#" className="underline">
+					<a href="/conditions" className="underline">
 						conditions
 					</a>
 				</p>
@@ -81,7 +88,7 @@ export const UserAuthentication = () => {
 						{...passwordInput}
 					/>
 					<a
-						href="#"
+						href="/forgot-password"
 						className="text-sm text-blue-600 hover:underline focus:text-blue-800"
 					>
 						Forgot Password?
