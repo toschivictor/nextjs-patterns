@@ -14,9 +14,8 @@ export default function Dashboard() {
 			<aside className="w-1/6 bg-blue-500 dark:bg-blue-700">
 				<div className="flex items-center justify-between p-4">
 					<h1 className="text-2xl font-bold text-white">Dashboard</h1>
-					<ThemeToggle />
 				</div>
-				<nav>
+				<nav className="h-full flex flex-col gap-y-8">
 					<ul>
 						<li>
 							<Link
@@ -55,6 +54,8 @@ export default function Dashboard() {
 							</Link>
 						</li>
 					</ul>
+
+					<ThemeToggle />
 				</nav>
 			</aside>
 			<main className="w-5/6 p-4">
