@@ -23,6 +23,6 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## Using Docker
 
 Install Docker on your machine.
-Build your container: `docker build -t nextjs-poc .`
-Run your container: `docker run -p 3000:3000 nextjs-poc`
+Build your container: `docker build -t nextjs-patterns .`
+Run your container: `docker run -p 3000:3000 nextjs-patterns`
 You can view your images created with docker images.
