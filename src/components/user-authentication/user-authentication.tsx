@@ -6,11 +6,8 @@ import { Button } from '@/components/button/button';
 import { Input } from '@/components/input/input';
 import { useInput } from '@/hooks/use-input';
 import { postUserAuthentication } from '@/lib/api/user-authentication';
+import { loginSchema, validateForm } from '@/lib/validations';
 
-// TODO:
-// - Add validation to the form using Zod
-// - Add error handling to the form
-// - Create API in the backend
 export const UserAuthentication = () => {
 	const emailInput = useInput('');
 	const passwordInput = useInput('');
@@ -19,32 +16,35 @@ export const UserAuthentication = () => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log('handleSubmit');
 		setIsLoading(true);
-		validateInput(emailInput);
-		validateInput(passwordInput);
+
+		// Validate form using Zod
+		const validation = validateForm(loginSchema, {
+			email: emailInput.value,
+			password: passwordInput.value,
+		});
+
+		// Set field-specific error messages
+		emailInput.setError(validation.errors.email || false);
+		passwordInput.setError(validation.errors.password || false);
+
+		// If validation fails, stop submission
+		if (!validation.isValid) {
+			setIsLoading(false);
+			return;
+		}
 
 		try {
 			await postUserAuthentication({
 				email: emailInput.value,
 				password: passwordInput.value,
 			});
+			router.push('/dashboard');
 		} catch (error) {
 			console.error(error);
+			// TODO: Add error handling to the form (e.g., show API error message)
 		} finally {
-			router.push('/dashboard');
 			setIsLoading(false);
-		}
-	};
-
-	const validateInput = (input: {
-		value: string;
-		setError: (value: boolean) => void;
-	}) => {
-		if (!input.value.trim()) {
-			input.setError(true);
-		} else {
-			input.setError(false);
 		}
 	};
 

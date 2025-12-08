@@ -4,7 +4,7 @@ interface InputProps {
 	value: string | number;
 	name: string;
 	placeholder?: string;
-	error: boolean;
+	error: string | boolean;
 	disabled?: boolean;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -35,7 +35,9 @@ export const Input = ({
 				className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
 			/>
 			{error && (
-				<p className="text-red-500 text-sm">Input field can't be empty!</p>
+				<p className="text-red-500 text-sm">
+					{typeof error === 'string' ? error : "Input field can't be empty!"}
+				</p>
 			)}
 		</div>
 	);
